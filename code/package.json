@@ -1,0 +1,18 @@
+{
+  "name": "roadradar",
+  "version": "1.0.0",
+  "description": "Inital version with basic features.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Jafar Jalali",
+  "license": "jrd_developers",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  }
+}
