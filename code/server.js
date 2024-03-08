@@ -25,6 +25,8 @@ app.use("/api/auth", require("./routes/auth/auth_route"));
 
 app.use("/api/hazard",require("./routes/hazard/hazard_route"));
 
+app.use("/api/profile",require("./routes/userProfile/userProfile_route"));
+
 app.listen(port,()=>{
     console.log(`Server running at port ${port}`);
 })

@@ -14,9 +14,18 @@ const HazardSchema = new mongoose.Schema(
             type : String,
             require : true
         },
-        images : [
+        coordinates : {
+            type: [Number],
+            require : true
+        },
+        hazardImages : [
             {
-                type : String
+                mimeType: {
+                    type: String,
+                },
+                url: {
+                    type: String,
+                },
             }
         ]
         

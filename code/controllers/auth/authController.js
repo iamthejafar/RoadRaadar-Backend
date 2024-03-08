@@ -2,7 +2,7 @@ const { UserSchema } = require("../../models/auth/user/user.model");
 
 const login = async (req,res) => {
 
-    const {email, password} = req.body;
+    const {email, password} = req.query;
 
 
     if(!email || !password){
@@ -33,13 +33,8 @@ const login = async (req,res) => {
 }
 
 
-
-
 const signUp = async (req,res) => {
-
-
-    const { email, password } = req.body;
-
+    const { email, password } = req.query;
     if(!email || !password){
         res.status(400).json(
             {
@@ -48,24 +43,18 @@ const signUp = async (req,res) => {
         );
     }
 
-
-
     try{
         const user = await UserSchema.findOne({email});
-
         if(user){
             res.status(400).json({message: "Email id already exist."});
         }
         else{
             let newUSer = new UserSchema({
                 email : email,
-                password : password
+                password : password,
+                completeProfile : false
             });
-    
-    
             await newUSer.save();
-    
-    
             res.status(200).json({
                 message : "Successfully Signup",
                 user : newUSer._id
@@ -73,10 +62,7 @@ const signUp = async (req,res) => {
         }
     } catch(e){
         res.status(500).json({message: "Signup Error !"});
-
     }
-    
-
 }
 
 
