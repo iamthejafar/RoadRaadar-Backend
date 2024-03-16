@@ -13,12 +13,14 @@ const addHazardIssue = async (req,res) => {
         let images = [];
         req.files.hazardImages.map((image) => images.push({mimeType: image?.mimetype, url:image?.location}));
 
+        const parsedCords = JSON.parse(coordinates);
+
         await HazardSchema.create({
             userId,
             description,
             hazardImages : images,
             hazardType,
-            coordinates
+            coordinates : parsedCords
         });
 
         return res.status(201).json({message : "Issue added successfully."});

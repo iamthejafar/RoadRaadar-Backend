@@ -13,7 +13,7 @@ const port = process.env.port || 5000;
 dbConnect();
 app.use(express.json());
 app.use(express.urlencoded({ limit: "100mb", extended: true }));
-// app.use(errorHandler);
+app.use(errorHandler);
 
 
 app.use(cors());
