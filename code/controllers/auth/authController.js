@@ -1,9 +1,9 @@
 const { UserSchema } = require("../../models/auth/user/user.model");
+const generateToken = require("../../utils/generateJWTToken");
 
 const login = async (req,res) => {
 
     const {email, password} = req.query;
-
 
     if(!email || !password){
         return res.status(400).json(
@@ -23,7 +23,8 @@ const login = async (req,res) => {
     if(user.password === password){
         return res.status(200).json({
             message: "Logged in Successfully.",
-            userId : user._id
+            userId : user._id,
+            token: generateToken(user._id)
         });
     }
    } catch(e){
@@ -57,10 +58,12 @@ const signUp = async (req,res) => {
             await newUSer.save();
             res.status(200).json({
                 message : "Successfully Signup",
-                user : newUSer._id
+                user : newUSer._id,
+                token : generateToken(newUSer._id)
             });
         }
     } catch(e){
+        console.log(e);
         res.status(500).json({message: "Signup Error !"});
     }
 }
